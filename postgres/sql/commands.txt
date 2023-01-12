@@ -1,0 +1,5 @@
+# Run create_table.sql
+psql -h localhost -U myuser -d mydatabase -a -f create_table.sql
+
+# Run drop_table.sql
+psql -h localhost -U myuser -d mydatabase -a -f drop_table.sql

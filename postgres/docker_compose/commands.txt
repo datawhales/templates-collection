@@ -1,0 +1,5 @@
+# Run postgres DB using docker compose
+docker compose up -d
+
+# Remove postgres DB using docker compose
+docker compose down -v

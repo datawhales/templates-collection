@@ -1,0 +1,10 @@
+# Run postgres DB using docker
+docker run --name postgres-server \
+    -e POSTGRES_DB=mydatabase \
+    -e POSTGRES_USER=myuser \
+    -e POSTGRES_PASSWORD=mypassword \
+    -p 5432:5432 \
+    -d postgres:14.0
+
+# Remove postgres DB using docker
+docker rm -f postgres-server

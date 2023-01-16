@@ -59,9 +59,18 @@
     # Run drop_table.sql
     psql -h localhost -U myuser -d mydatabase -a -f drop_table.sql
     ```
+- Table 에 데이터 삽입
+    ```bash
+    # Insert data
+    psql -h localhost -U myuser -d mydatabase -a -f insert_data.sql
+    ```
 
 ## Python Scripts
 - Table 생성
     ```bash
     python scripts/create_table.py
+    ```
+- Table 에 데이터 삽입
+    ```bash
+    python scripts/insert_data.py
     ```

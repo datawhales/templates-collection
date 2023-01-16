@@ -5,7 +5,6 @@ def create_table(db_connect):
     query = """
         CREATE TABLE IF NOT EXISTS "iris_data" (
             id SERIAL PRIMARY KEY,
-            timestamp TIMESTAMP,
             sepal_length float8,
             sepal_width float8,
             petal_length float8,
@@ -16,7 +15,6 @@ def create_table(db_connect):
     with db_connect.cursor() as cur:
         cur.execute(query)
         db_connect.commit()
-
 
 if __name__ == "__main__":
     # Connect to db
@@ -30,3 +28,5 @@ if __name__ == "__main__":
 
     # Create table
     create_table(db_connect)
+
+    db_connect.close()

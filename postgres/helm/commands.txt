@@ -1,0 +1,8 @@
+# Create helm template directory
+helm create <CHART_NAME>
+
+# Port-forward
+kubectl port-forward <POD_NAME> 5432:5432
+
+# Connect to DB
+psql -U myuser -h localhost -p 5432 -d mydatabase

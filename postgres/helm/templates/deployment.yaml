@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ include "postgreschart.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "postgreschart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      {{- include "postgreschart.selectorLabels" . | nindent 8 }}
+  template:
+    metadata:
+      labels:
+      {{- include "postgreschart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: postgreschart
+        envFrom:
+          - secretRef:
+              name: {{ include "postgreschart.name" . }}
+        ports:
+          - name: postgreschart
+            containerPort: {{ .Values.service.port }}
+            protocol: TCP
+        volumeMounts:
+        {{ if .Values.persistence.enabled }}
+          - name: postgreschart-persistent-storage
+            mountPath: /var/lib/postgresql/data
+            subPath: pgdata
+        {{ end }}
+      volumes:
+      {{ if .Values.persistence.enabled }}
+        - name: postgreschart-persistent-storage
+          persistentVolumeClaim:
+            claimName: {{ include "postgreschart.name" . }}
+      {{ end }}

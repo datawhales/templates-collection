@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name:  {{ include "postgreschart.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "postgreschart.labels" . | nindent 4 }}
+spec:
+  accessModes:
+  # Reuse accessModes if this PVC is already exists
+  # Refs : https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function
+{{- $previousPVC := (lookup "v1" "PersistentVolumeClaim" .Release.Namespace (include "postgreschart.name" .) ) }}
+{{- if $previousPVC }}
+  {{- range $mode := $previousPVC.spec.accessModes }}
+    - {{ $mode }}
+  {{- end}}
+{{- else }}
+    - ReadWriteOnce
+{{- end }}
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: {{ .Values.persistence.size }}

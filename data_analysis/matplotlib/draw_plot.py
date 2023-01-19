@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-
+# TODO: plt 다양한 옵션 추가해서 최대한 많이 쓰는 옵션 다 넣기
 def main():
     plt.plot([1, 2, 3, 4], [2, 3, 5, 10], color="red", label="Example Data")
     plt.xlabel("X Axis", fontsize=10)

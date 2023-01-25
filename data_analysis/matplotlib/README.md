@@ -1,1 +1,1 @@
-# Matplotlib 관련
+# Matplotlib

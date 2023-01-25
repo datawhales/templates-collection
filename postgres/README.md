@@ -1,4 +1,5 @@
-# PostgreSQL DB 관련
+# PostgreSQL DB
+
 ## Docker
 - DB 띄우기
     ```bash

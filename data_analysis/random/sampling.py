@@ -49,6 +49,7 @@ def sample_k_items(x: List[Any], k: int, counts: Union[List[int], None] = None) 
     SEED = 42
     random.seed(SEED)
 
+    # 리스트에서 k개 item을 샘플링
     ret = random.sample(
         population=x,
         k=k,

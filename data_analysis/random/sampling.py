@@ -30,6 +30,7 @@ def sample_one_int_with_step(start: int, stop: int, step: int):
 
 
 def shuffle_list(x: List[Any]) -> List:
+    """입력 받은 리스트를 셔플한 뒤 반환하는 함수."""
     SEED = 42
     random.seed(SEED)
 

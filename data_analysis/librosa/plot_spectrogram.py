@@ -1,4 +1,4 @@
-from IPython.display import Audio
+from IPython.display import display, Audio
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt

@@ -122,6 +122,37 @@ def plot_log_spectrogram(signal: np.ndarray, sr: int, n_fft: int = 2048, hop_len
     plt.show()
 
 
+def plot_mel_spectrogram(signal: np.ndarray, sr: int, n_fft: int = 2048, hop_length: Union[int, None] = None, win_length: Union[int, None] = None, figsize: Tuple[int, int] = (12, 4)) -> None:
+    """입력된 signal과 sample rate를 이용해 mel 스케일로 spectrogram을 그리는 함수.
+
+    Args:
+        signal (np.ndarray): 음성 신호.
+        sr (int): Sample rate.
+        n_fft (int): 0으로 padding되는 것을 포함한 fft 되는 sample 수. win_length보다 크거나 같아야 한다.
+        hop_length (Union[int, None]): fft마다 이동하는 sample 수 (stride 개념).
+        win_length (Union[int, None]): fft 하나에 들어가는 sample 수 (window).
+        figsize (Tuple[int, int]): Plot 크기.
+    """
+    plt.figure(figsize=figsize)
+
+    # mel spectrogram 계산
+    mel_signal = librosa.feature.melspectrogram(y=signal, n_fft=n_fft, hop_length=hop_length, win_length=win_length)
+    spectrogram = np.abs(mel_signal)
+
+    # power scale을 decibel로 변환
+    mel_spectrogram = librosa.power_to_db(spectrogram, ref=np.max)
+
+    # plot
+    librosa.display.specshow(mel_spectrogram, sr=sr, x_axis="time", y_axis="mel", hop_length=hop_length, cmap="magma")
+    
+    plt.colorbar(label="Decibels")
+    plt.title("Mel-Spectrogram (dB)", fontsize=15)
+    plt.xlabel("Time", fontsize=12)
+    plt.ylabel("Frequency", fontsize=12)
+    plt.tight_layout()
+    plt.show()
+
+
 def example():
     # librosa 내장 오디오 불러오기
     signal, sr = librosa.load(librosa.util.example("brahms"))
@@ -140,6 +171,9 @@ def example():
 
     # log spectrogram plot
     plot_log_spectrogram(signal=signal, sr=sr, n_fft=2048, hop_length=512, win_length=2048)
+
+    # mel spectrogram plot
+    plot_mel_spectrogram(signal=signal, sr=sr, n_fft=2048, hop_length=512, win_length=2048)
 
 
 if __name__ == "__main__":

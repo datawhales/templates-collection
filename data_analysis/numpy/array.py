@@ -18,26 +18,30 @@ def squeeze(x: np.ndarray, axis: int = 0) -> np.ndarray:
 
 def example():
     a = np.array([[1, 2], [3, 4]])
-    b = reshape(x=a, shape=(1, 4))
+
+    # reshape
+    b = a.reshape((1, 4))
     print(f"b: {b}")
-    c = squeeze(x=b, axis=0)
+
+    # reduce dimension
+    c = b.squeeze(axis=0)
     print(f"c: {c}")
 
 
 def example_2():
     a = np.array([[1, 2], [3, 4]])
-    b = reshape(x=a, shape=(-1, 1))
+
+    # reshape
+    b = a.reshape((-1, 1))
     print(f"b: {b}")
-    c = squeeze(x=b, axis=1)
+
+    # reduce dimension
+    c = b.squeeze(axis=1)
     print(f"c: {c}")
 
 
-def main():
+if __name__ == "__main__":
     print("Example 1:")
     example()
     print("\nExample 2:")
     example_2()
-
-
-if __name__ == "__main__":
-    main()

@@ -21,3 +21,4 @@
 - df['new_col'] = df['col1'].map(lambda x: x**2)
 - df.sort_values(by=['col1', 'col2'], ascending=[True, False], inplace=True)
 ```
+- filter(like=)

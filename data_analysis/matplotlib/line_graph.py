@@ -1,15 +1,5 @@
-from typing import Iterable, List, Tuple
+from typing import List, Tuple
 import matplotlib.pyplot as plt
-
-# TODO: plt 다양한 옵션 추가해서 최대한 많이 쓰는 옵션 다 넣기
-
-
-
-font = {'family': 'serif',
-        'color':  'darkred',
-        'weight': 'normal',
-        'size': 16,
-        }
 
 
 def plot_line_graph(x: List[int], y: List[int], figsize: Tuple[int, int]=(12, 4)) -> None:

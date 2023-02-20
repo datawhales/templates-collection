@@ -59,17 +59,34 @@ class SqueezeArray:
         return ret
 
 
+# np.expand_dims()
+class ExpandArray:
+    """Numpy array의 dimension을 확장."""
+    @staticmethod
+    def expand():
+        x = np.array([1, 2, 3])
+
+        # expand
+        ret = np.expand_dims(x, axis=0)
+        print(ret)
+        return ret
+
+
 if __name__ == "__main__":
     # np.ones_like()
-    print(f"np.ones_like()")
+    print("np.ones_like()")
     OnesLikeArray.ones_like()
 
     # np.reshape()
-    print(f"np.reshape()")
+    print("np.reshape()")
     ReshapeArray.reshape()
     ReshapeArray.reshape_2()
 
     # np.squeeze()
-    print(f"np.squeeze()")
+    print("np.squeeze()")
     SqueezeArray.squeeze()
     SqueezeArray.squeeze_2()
+
+    # np.expand_dims()
+    print("np.expand_dims()")
+    ExpandArray.expand()

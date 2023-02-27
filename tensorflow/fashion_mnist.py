@@ -55,7 +55,10 @@ def inference(model, test_image):
     class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
     
-    probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
+    probability_model = tf.keras.Sequential([
+        model,
+        tf.keras.layers.Softmax(),
+    ])
 
     plt.figure(figsize=(5, 5))
     plt.imshow(test_image)
